@@ -1,11 +1,14 @@
 package streaming_practice
 
 import org.apache.spark.storage.StorageLevel
-import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.streaming.{Seconds, State, StreamingContext}
 
 import scala.util.Try
-//This code tries to fetch most used words in a hotel review having rating greater than or equal to 3.I have used tripadvisors rating data which is freely available online
-object Hotelreview {
+
+//This code tries to fetch most used words in a hotel review having rating greater than or equal to 3.
+// I have used tripadvisors rating data which is freely available online
+object HotelReview {
+
   def main(args: Array[String]): Unit = {
 
     //create stream context
@@ -13,6 +16,7 @@ object Hotelreview {
 
 
     //read review data from socket
+    //val hotelreviews=ssc.socketTextStream("127.0.0.1", 9999, StorageLevel.MEMORY_AND_DISK_SER)
     val hotelreviews=ssc.socketTextStream("127.0.0.1", 9999, StorageLevel.MEMORY_AND_DISK_SER)
 
     //map reviews to case class
